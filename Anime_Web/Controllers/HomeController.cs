@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using Anime_Web.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,21 +8,43 @@ namespace Anime_Web.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+
+        public IActionResult Index(int a = 0)
         {
-            return View();
+            List<Movie> Movies = new List<Movie>
+            {
+                new Movie()
+                {
+                    Name = "Die Hard",
+                    Length = 120,
+                    Year = new DateTime(1986, 1, 1),
+                    Billede = "~/images/Die_Hard.jpg",
+                        IMDB = "http://www.imdb.com/title/tt0095016/"
+                },
+                new Movie()
+                {
+                    Name = "Die Hard 2",
+                    Length = 121,
+                    Year = new DateTime(1987, 2, 2),
+                    Billede = "~/images/Die_Hard.jpg",
+                    IMDB = "http://www.imdb.com/title/tt0099423"
+                }
+            };
+
+            if (a!=0) Movies.Reverse();
+            return View(Movies);
         }
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.¿?";
+            ViewData["Message"] = "This is a text";
 
             return View();
         }
 
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = "FIXME skriv noget om mig selv.";
 
             return View();
         }
