@@ -9,14 +9,14 @@ namespace Anime_Web.Controllers
     public class HomeController : Controller
     {
 
-        public IActionResult Index(int a = 0)
+        public IActionResult Index(int id = 0)
         {
             List<Movie> Movies = new List<Movie>
             {
                 new Movie()
                 {
                     Name = "Die Hard",
-                    Length = 120,
+                    Length = 130,
                     Year = new DateTime(1986, 1, 1),
                     Billede = "~/images/Die_Hard.jpg",
                         IMDB = "http://www.imdb.com/title/tt0095016/"
@@ -24,14 +24,20 @@ namespace Anime_Web.Controllers
                 new Movie()
                 {
                     Name = "Die Hard 2",
-                    Length = 121,
+                    Length = 120,
                     Year = new DateTime(1987, 2, 2),
                     Billede = "~/images/Die_Hard.jpg",
                     IMDB = "http://www.imdb.com/title/tt0099423"
                 }
             };
 
-            if (a!=0) Movies.Reverse();
+            if (id != 0)
+            {
+                Movies.Reverse();
+                ViewData["Sorting"] = "Length";
+            }else
+                ViewData["Sorting"] = "Title";
+
             return View(Movies);
         }
 
