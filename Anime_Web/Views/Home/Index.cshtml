@@ -7,8 +7,11 @@
 <h3>Movies</h3>
 <h4>Sorted by @ViewData["Sorting"]</h4>
 
-<a class="btn btn-default" href="http://localhost:5001/Home/Index/1">Sort by length</a>
-<a class="btn btn-default" href="http://localhost:5001/Home/Index/0">Sort by title</a>
+@if(@ViewData["Sorting"] == "Title"){
+    <a class="btn btn-default" href="http://localhost:5001/Home/Index/1">Sort by length</a>
+} else{
+    <a class="btn btn-default" href="http://localhost:5001/Home/Index/0">Sort by title</a>
+}
 
 @model List<Movie>
 @foreach (var element in Model)
